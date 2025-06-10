@@ -134,9 +134,7 @@ for curr_seed in Seed_List:
 
         Test_Time_ALL.append((toc2 - tic2))
 
-        if curr_seed == 0:
-            pltgraph(gt,output,MODEL,dataset_name)
-            print('------------------------graph-----------------------')
+
 
     OA_ALL.append(testOA.cpu() if torch.is_tensor(testOA) else testOA)
     AA_ALL.append(testAA)
@@ -145,7 +143,7 @@ for curr_seed in Seed_List:
     del net
     torch.cuda.empty_cache()
 
-# 汇总统计
+
 OA_ALL = np.array([x.cpu().numpy() if torch.is_tensor(x) else x for x in OA_ALL])
 AA_ALL = np.array(AA_ALL)
 KPP_ALL = np.array(KPP_ALL)
