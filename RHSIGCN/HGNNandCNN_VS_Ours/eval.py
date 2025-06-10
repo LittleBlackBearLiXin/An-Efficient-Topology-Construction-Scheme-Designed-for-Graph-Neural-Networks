@@ -23,12 +23,7 @@ def compute_loss(predict: torch.Tensor, reallabel_onehot: torch.Tensor, reallabe
 
 
 
-def our_loss(embeding,A,lamada):
-    out1=torch.softmax(embeding,dim=1)
-    out=torch.sparse.mm(A,embeding)
-    out=torch.softmax(out,dim=1)
-    loss= torch.norm(out - out1, p=2, dim=1)
-    return loss*lamada
+
 
 
 
@@ -49,13 +44,13 @@ def evaluate_performance(output, gt, onehot, class_count,
     pred = pred_labels.cpu().numpy()[valid.cpu().numpy()]
     true = gt.view(-1).cpu().numpy()[valid.cpu().numpy()].astype(int)
 
-    # ✅ +1 操作，确保类别从 1 开始
+  
     pred += 1
 
-    # Kappa
+
     kappa = metrics.cohen_kappa_score(pred, true)
 
-    # Per-class accuracy (recall)
+  
     report = metrics.classification_report(
         true, pred, labels=np.arange(1, class_count + 1),
         output_dict=True, zero_division=0
@@ -63,12 +58,12 @@ def evaluate_performance(output, gt, onehot, class_count,
     acc_per_class = [report[str(i)]['recall'] for i in range(1, class_count + 1)]
     AA = np.mean(acc_per_class)
 
-    # 打印
+  
     if printFlag:
         print(f"OA={OA:.4f}, AA={AA:.4f}, Kappa={kappa:.4f}")
         print("Per-class accuracy:", acc_per_class)
 
-    # 可选写入 txt
+   
     if save_path:
         with open(save_path, 'a+') as f:
             f.write("\n======================\n")
