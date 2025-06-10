@@ -147,8 +147,8 @@ def AMGCFN_prepare_model_inputs(data,
     m, n = height, width
     total = m * n
     pca_bands=3
-    GCN_nhid = 64  # GCN隐藏层通道数
-    CNN_nhid = 64  # CNN隐藏层通道数
+    GCN_nhid = 64  # 
+    CNN_nhid = 64  # 
 
     def create_mask(gt_2d):
         mask = np.zeros((total, class_count), dtype=np.float32)
@@ -162,7 +162,7 @@ def AMGCFN_prepare_model_inputs(data,
     val_mask = create_mask(val_gt)
     test_mask = create_mask(test_gt)
 
-    # 数据PCA处理 pca_bands = 3
+    #
     def pca_process(n_data, n_labels):
         n_labels = np.reshape(n_labels, [-1])
         n_idx = np.where(n_labels != 0)[0]
@@ -177,7 +177,7 @@ def AMGCFN_prepare_model_inputs(data,
     print(time.strftime("%Y-%m-%d %H:%M:%S"), 'PCA processing')
     pca_data = pca_process(data, np.reshape(train_gt, [height, width]))
 
-    # 根据训练集样本进行超像素分割
+    #
     tic0 = time.time()
     superpixel = AMGCFN_SLIC.SlicProcess(data, np.reshape(
         train_gt, [height, width]), class_count - 1)
@@ -188,7 +188,6 @@ def AMGCFN_prepare_model_inputs(data,
 
     print('get A time:',PCA_SLIC_Time)
 
-    # 获取不同hop的图的邻接矩阵
     superpixel_count, _ = W.shape
     pathset = []
 
@@ -238,9 +237,9 @@ def AMGCFN_prepare_model_inputs(data,
     Q = torch.from_numpy(Q).to(device)
     S = torch.from_numpy(S.astype(np.float32)).to(device)
 
-    A = torch.from_numpy(A.astype(np.float32)).to(device)  # 邻接矩阵hop_1
-    A2 = torch.from_numpy(A2.astype(np.float32)).to(device)  # 邻接矩阵hop_2
-    A3 = torch.from_numpy(A3.astype(np.float32)).to(device)  # 邻接矩阵hop_3
+    A = torch.from_numpy(A.astype(np.float32)).to(device)  # 
+    A2 = torch.from_numpy(A2.astype(np.float32)).to(device)  # 
+    A3 = torch.from_numpy(A3.astype(np.float32)).to(device)  # 
 
     nodes, channel = S.shape
 
