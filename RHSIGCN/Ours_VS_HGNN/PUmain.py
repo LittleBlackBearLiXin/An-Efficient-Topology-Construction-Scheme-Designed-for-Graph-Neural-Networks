@@ -131,9 +131,7 @@ for curr_seed in Seed_List:
 
         Test_Time_ALL.append((toc2 - tic2))
 
-        classification_map = torch.argmax(output, 1).reshape(data.shape[:2]).cpu().numpy() + 1
-        # 可选保存分类图
-        # draw_classification_map(classification_map, f"results/{dataset_name}_pred_{curr_seed}")
+
 
     OA_ALL.append(testOA.cpu() if torch.is_tensor(testOA) else testOA)
     AA_ALL.append(testAA)
