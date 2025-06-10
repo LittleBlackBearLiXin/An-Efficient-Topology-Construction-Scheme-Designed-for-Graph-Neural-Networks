@@ -214,7 +214,7 @@ class MPNNCNN(nn.Module):#0,0.5,0.2
 
         noise = self.CNN_denoise(torch.unsqueeze(x.permute([2, 0, 1]), 0))
         noise = torch.squeeze(noise, 0).permute([1, 2, 0])
-        clean_x = noise  # 直连
+        clean_x = noise  # 
 
         clean_x_flatten = clean_x.reshape([h * w, -1])
 
@@ -382,9 +382,8 @@ class SSMPNN(nn.Module):#0.5,0.2
 class SSMPNN2(nn.Module):
     def __init__(self, height: int, width: int, changel: int, class_count: int, Q: torch.Tensor, A: torch.Tensor,AX):
         super(SSMPNN2, self).__init__()
-        # 类别数,即网络最终输出通道数
-        self.class_count = class_count  # 类别数
-        # 网络输入数据大小
+        self.class_count = class_count  # 
+        # 
         self.channel = changel
         self.height = height
         self.width = width
@@ -392,7 +391,7 @@ class SSMPNN2(nn.Module):
         self.A = A
         self.AX=AX
         self.model = 'normal'
-        self.norm_col_Q = Q / (torch.sum(Q, 0, keepdim=True))  # 列归一化Q
+        self.norm_col_Q = Q / (torch.sum(Q, 0, keepdim=True))  # 
 
         layers_count = 2
         self.CNN_denoise = nn.Sequential()
@@ -452,13 +451,13 @@ class SSMPNN2(nn.Module):
 
         MPNNruslt=self.MPNN_Branch(clean_x_flatten)
 
-        superpixels_flatten = torch.mm(self.norm_col_Q.t(), clean_x_flatten)  # 低频部分
+        superpixels_flatten = torch.mm(self.norm_col_Q.t(), clean_x_flatten)  # 
 
 
         hx = clean_x
 
 
-        CNN_result = self.CNN_Branch(torch.unsqueeze(hx.permute([2, 0, 1]), 0))  # spectral-spatial convolution
+        CNN_result = self.CNN_Branch(torch.unsqueeze(hx.permute([2, 0, 1]), 0))  # 
         CNN_result = torch.squeeze(CNN_result, 0).permute([1, 2, 0]).reshape([h * w, -1])
 
 
