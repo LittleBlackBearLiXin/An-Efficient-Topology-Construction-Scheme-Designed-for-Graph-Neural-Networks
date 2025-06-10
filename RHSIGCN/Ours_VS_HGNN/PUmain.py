@@ -142,7 +142,7 @@ for curr_seed in Seed_List:
     del net
     torch.cuda.empty_cache()
 
-# 汇总统计
+# 
 OA_ALL = np.array([x.cpu().numpy() if torch.is_tensor(x) else x for x in OA_ALL])
 AA_ALL = np.array(AA_ALL)
 KPP_ALL = np.array(KPP_ALL)
