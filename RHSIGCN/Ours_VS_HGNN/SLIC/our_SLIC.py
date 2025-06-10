@@ -6,9 +6,8 @@ from sklearn import preprocessing
 
 
 def SegmentsLabelProcess(labels):
-    '''
-    对labels做后处理，防止出现label不连续现象
-    '''
+
+ 
     labels = np.array(labels, np.int64)
     H, W = labels.shape
     ls = list(set(np.reshape(labels, [-1]).tolist()))
@@ -33,8 +32,7 @@ class SLICcccc(object):
         self.min_size_factor = min_size_factor
         self.max_size_factor = max_size_factor
         self.sigma = sigma
-        # 数据standardization标准化,即提前全局BN
-        height, width, bands = HSI.shape  # 原始高光谱数据的三个维度
+        height, width, bands = HSI.shape  #
         data = np.reshape(HSI, [height * width, bands])
         min_max = preprocessing.StandardScaler()
         data = min_max.fit_transform(data)
@@ -42,16 +40,14 @@ class SLICcccc(object):
 
 
     def get_Q_and_S_and_Segments(self):
-        # 执行 SLIC 并得到Q(nxm),S(m*b)
         img = self.data
         (h, w, d) = img.shape
-        # 计算超像素S以及相关系数矩阵Q
+        # 
         # data_pca = self.pca_processing(img, 3)
         segments = slic(img, n_segments=self.n_segments, compactness=self.compactness, max_num_iter=self.max_iter,
                         convert2lab=False, sigma=self.sigma, enforce_connectivity=True,
                         min_size_factor=self.min_size_factor, max_size_factor=self.max_size_factor, slic_zero=False)
 
-        # 判断超像素label是否连续,否则予以校正
         if segments.max() + 1 != len(list(set(np.reshape(segments, [-1]).tolist()))):
             segments = SegmentsLabelProcess(segments)
         self.segments = segments
@@ -62,8 +58,8 @@ class SLICcccc(object):
 
 
         segments_1 = np.reshape(segments, [-1])
-        S = np.zeros([superpixel_count, d], dtype=np.float32)  # 超像素特征
-        Q = np.zeros([w * h, superpixel_count], dtype=np.float32)  # 像素与超像素联系矩阵
+        S = np.zeros([superpixel_count, d], dtype=np.float32)  # 
+        Q = np.zeros([w * h, superpixel_count], dtype=np.float32)  # 
         x = np.reshape(img, [-1, d])  # Flatten(x)
 
         x_center = np.zeros([superpixel_count], dtype=np.float32)
