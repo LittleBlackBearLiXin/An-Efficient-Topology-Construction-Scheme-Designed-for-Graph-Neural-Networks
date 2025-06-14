@@ -1,7 +1,7 @@
-# Rethinking Superpixel based Graph Neural Networks for Hyperspectral Image Classification
+# Pixel-level graph neural networks based on optimized feature representation for hyperspectral image classification
 
-#This research has been submitted to the journal Remote Sensing, part of MDPI, so please cite our paper if you use our code: Rethinking Superpixel-based Graph Neural Networks for
-Hyperspectral Image Classification（Yu Zhang, Xin Li, Yaoqun Xu*, Xitong Xu, Xi Zhang and Junyi Wang ）
+#This research has been submitted to the journal IEEE ACCESS, part of IEEE, so please cite our paper if you use our code: Rethinking Superpixel-based Graph Neural Networks for
+Hyperspectral Image Classification（Yu Zhang, Xin Li, Yaoqun Xu* ）
 
 #The UP and SA datasets are too large and can be downloaded here: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
 
