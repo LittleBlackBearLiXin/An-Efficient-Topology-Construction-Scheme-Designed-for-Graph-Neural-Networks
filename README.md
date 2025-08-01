@@ -1,6 +1,6 @@
-# Pixel-level graph neural networks based on optimized feature representation for hyperspectral image classification
+# An Efficient Topology Construction Scheme Designed for Graph Neural Networks in Hyperspectral Image Classification
 
-#This research has been submitted to the journal IEEE ACCESS, part of IEEE, so please cite our paper if you use our code: Pixel-level graph neural networks based on optimized feature representation for hyperspectral image classification（Yu Zhang, Xin Li, Yaoqun Xu* ）
+#This research has been submitted to the journal IEEE ACCESS, part of IEEE, so please cite our paper if you use our code: An Efficient Topology Construction Scheme Designed for Graph Neural Networks in Hyperspectral Image Classification（Yu Zhang, Xin Li, Yaoqun Xu* ）
 
 #The UP and SA datasets are too large and can be downloaded here: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
 
