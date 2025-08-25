@@ -93,6 +93,7 @@ for curr_seed in Seed_List:
 
         with torch.no_grad():
             net.eval()
+            output= net(net_input)
             valloss = compute_loss(output, val_onehot_tensor, val_mask_tensor)
             if valloss < best_loss:
                 best_loss = valloss
@@ -165,3 +166,4 @@ with open(f'results/{dataset_name}_results.txt', 'a+') as f:
             "\nAVG=" + str(np.mean(AVG_ALL, 0)) + '+-' + str(np.std(AVG_ALL, 0)) +
             "\nAverage training time:" + str(np.mean(Train_Time_ALL)) +
             "\nAverage testing time:" + str(np.mean(Test_Time_ALL)))
+
