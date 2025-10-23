@@ -48,7 +48,6 @@ def getA(net_input, device, num_subgraphs=0, top_k=0,cross_subgraph_k=0,k_cos=0,
     subgraph_ranges = [(i * subgraph_size, min((i + 1) * subgraph_size, N))
                        for i in range(num_subgraphs)]
 
-
     for i in range(num_subgraphs):
         curr_start, curr_end = subgraph_ranges[i]
         curr_indices = torch.arange(curr_start, curr_end, device=device)
@@ -61,31 +60,25 @@ def getA(net_input, device, num_subgraphs=0, top_k=0,cross_subgraph_k=0,k_cos=0,
             coord_dist = torch.cdist(curr_coords.float(), curr_coords.float(), p=2)
             spatial_sim = torch.exp(-coord_dist ** 2 / 2.0)
             sim_matrix = torch.relu(feat_sim) * spatial_sim
-
             k = min(top_k, curr_end - curr_start - 1)
             topk_val, topk_idx = torch.topk(sim_matrix, k=k, dim=1) # [subgraph_size, top_k]
             #print(topk_idx)
             #print(curr_indices)
-
             src = curr_indices.view(-1, 1).expand(-1, k)
             #print(src)
             dst = curr_indices[topk_idx]
             #print(dst)
-
             edge_src.append(src.flatten())
             edge_dst.append(dst.flatten())
 
 
         if i < num_subgraphs - 1:
             next_start, next_end = subgraph_ranges[i + 1]
-
-
             curr_half = curr_start + (k_cos * (curr_end - curr_start)) // 10
             curr_half = min(max(curr_half, curr_start), curr_end - 1)
             curr_boundary = torch.arange(curr_half, curr_end, device=device)
             #print(curr_boundary)
 
-            # 下一个子图的前半部分
             next_mid = next_start + ((10 - k_cos) * (next_end - next_start)) // 10
             next_half = min(max(next_mid, next_start + 1), next_end)
             next_boundary = torch.arange(next_start, next_half, device=device)
@@ -377,3 +370,4 @@ def dense_to_sparse_coo(dense_adj, num_nodes=None, edge_values=None, device='cud
 
 
     return sparse_adj.coalesce()
+
