@@ -32,18 +32,14 @@ def ours_model_inputs(data,gt,
     def getQandA(data,class_count):
         ls = Segmenttttt(data, class_count - 1)
 
-        # 目标路径：当前路径下的 HSI 文件夹
         output_folder = './HSI'
 
-        # 确保文件夹存在，如果没有则创建
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
 
-        # 保存 Q 和 A 的文件路径
         q_file_path = os.path.join(output_folder, 'Q111.npy')
         a_file_path = os.path.join(output_folder, 'A111.npy')
 
-        # 如果 Q 和 A 文件存在，则直接加载，否则重新计算 Q 和 A
         if os.path.exists(q_file_path) and os.path.exists(a_file_path):
             # 加载保存的 Q 和 A
             Q = np.load(q_file_path)
@@ -57,7 +53,6 @@ def ours_model_inputs(data,gt,
             LDA_SLIC_Time = toc0 - tic0
             print("LDA-SLIC costs time: {:.2f} seconds".format(LDA_SLIC_Time))
 
-            # 保存 Q 和 A 到文件
             np.save(q_file_path, Q)
             np.save(a_file_path, A)
             print("Saved Q and A to files.")
@@ -161,6 +156,7 @@ def ours_model_inputs(data,gt,
             train_onehot_tensor, val_onehot_tensor, test_onehot_tensor,
             train_mask_tensor, val_mask_tensor, test_mask_tensor,
             net)
+
 
 
 
