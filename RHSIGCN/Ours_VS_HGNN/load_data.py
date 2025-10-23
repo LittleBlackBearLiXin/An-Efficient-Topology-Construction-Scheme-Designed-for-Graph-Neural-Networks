@@ -8,17 +8,17 @@ import torch
 import matplotlib.pyplot as plt
 
 color_map_dict = {
-    'indian_': np.array([[255, 255, 255],  # 为标签 0 增加全白色
+    'indian_': np.array([[255, 255, 255],  # 
                          [0, 168, 132], [76, 0, 115], [0, 0, 0], [190, 255, 232], [255, 0, 0],
                          [115, 0, 0], [205, 205, 102], [137, 90, 68], [215, 158, 158], [255, 115, 223],
                          [0, 0, 255], [156, 156, 156], [115, 223, 255], [0, 255, 0], [255, 255, 0],
                          [255, 170, 0]], dtype=np.uint8),
 
-    'paviaU_': np.array([[255, 255, 255],  # 为标签 0 增加全白色
+    'paviaU_': np.array([[255, 255, 255],  #
                          [0, 0, 255], [76, 230, 0], [255, 190, 232], [255, 0, 0], [156, 156, 156],
                          [255, 255, 115], [0, 255, 197], [132, 0, 168], [0, 0, 0]], dtype=np.uint8),
 
-    'salinas_': np.array([[255, 255, 255],  # 为标签 0 增加全白色
+    'salinas_': np.array([[255, 255, 255],  # 
                           [0, 168, 132], [76, 0, 115], [0, 0, 0], [190, 255, 232], [255, 0, 0],
                           [115, 0, 0], [205, 205, 102], [137, 90, 68], [215, 158, 158], [255, 115, 223],
                           [0, 0, 255], [156, 156, 156], [115, 223, 255], [0, 255, 0], [255, 255, 0],
@@ -537,10 +537,11 @@ def visualize_tsne(output, gt_labels, color_map_dict, filename,dataname):
     #plt.legend(bbox_to_anchor=(1.05, 1),loc='upper left', framealpha=0.9)
     #plt.grid(alpha=0.2)
 
-    # 调整布局并保存
+    # 
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.close()
 
     print(f"t-SNE visualization saved to {save_path}")
+
     return save_path
