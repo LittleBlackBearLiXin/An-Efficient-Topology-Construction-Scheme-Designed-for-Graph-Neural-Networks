@@ -9,4 +9,4 @@
 
 #Feel free to use our proposed method before publishing your paper.
 
-#We encourage researchers to explore and try out our methods before formally publishing a paper, but be sure to cite our methods. You can find the code, documentation and instructions for use in this repository. If you encounter any problems or have any suggestions for improvement, please feel free to contact us at lixin17808627537@163.com.
+#We encourage researchers to explore and try out our methods before formally publishing a paper, but be sure to cite our methods. You can find the code, documentation and instructions for use in this repository. If you encounter any problems or have any suggestions for improvement, please feel free to contact us at lixin17808627537@163.com or lisxin@hrbeu.edu.cn.
